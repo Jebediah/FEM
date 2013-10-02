@@ -4,12 +4,12 @@
 #include <iomanip>
 #include "matrixops.h"
 #include "node.h"
-
+/*
 #define DTau (2.5e-5)
 #define DTSQUARED (6.25e-10)
 #define DAMPING 1
 #define STIFFNESS 100
-
+*/
 using namespace std;
 /*
 void mAssemble(Node*list,double**m)
@@ -62,11 +62,19 @@ void kAssemble(Node*list,double**k)
     transformation = NULL;
 }
 */
+// matrices named for G, C, and K
+void GAssemble{int size, double**
+
+}
 int main()
 {
     cout << "This Program solves a system of 2nd order (no bending allowed) constant term ODEs using FEM" << endl;
-    cout << "Enter any key to begin the magical journey....." << endl;
-    cin.get();
+    double DTau;
+    cout << "Enter the timestep in seconds." << endl;
+    cin >> DTau;
+    double DTauSqd = DTau*DTau;
+    double TwiceDTau = DTau*2;
+    cout << TwiceDTau;
     int NCNT, DoF;
     Node*nodes = NULL;
     cout<<"Enter 1 to automatically set up the system in problem 4"<<endl;

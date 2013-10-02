@@ -1,13 +1,1 @@
 # depslib dependency file v1.0
-1380672570 source:c:\users\ben\documents\mte 204\project i\test.cpp
-	<cstdlib>
-	<iostream>
-	<cmath>
-	<iomanip>
-	"matrixops.h"
-	"node.h"
-
-1380519599 c:\users\ben\documents\mte 204\project i\matrixops.h
-
-1380676142 c:\users\ben\documents\mte 204\project i\node.h
-
