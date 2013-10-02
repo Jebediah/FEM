@@ -326,4 +326,57 @@ void Invert(double**matrix, int size)
     cofactor = NULL;
     return;
 }
-void LUdecomp(double**a,double**b,int size);
+
+void lud(double**matrix,/* double**b,*/ int size, double*vector/*, double*result*/)
+{
+     double**upper = CreateMatrix(size); 
+     double**lower = CreateMatrix(size);
+     double sum;
+     for (int i=0; i<size; i++)
+     {
+         upper[i][i] = 1;
+     }
+     
+     for (int i=0; i<size; i++)
+     {
+         lower[i][0] = matrix[i][0];
+     }
+
+     for (int perm=0; perm<((size-1)*2); perm++)
+     {
+         if ((perm & 1) == 0)
+         {
+                   for (int i=((perm/2)+1); i<size; i++)
+                   {
+                       sum = matrix[perm/2][i];
+                       for (int j=0; j<(perm/2); j++)
+                       {
+                           sum -= lower[perm/2][j]*upper[j][i];
+                       }
+                       sum = sum/lower[perm/2][perm/2];
+                       upper[perm/2][i] = sum;
+                   }         
+         }
+         else
+         {
+                   for (int i=((perm+1)/2); i<size; i++)
+                   {
+                       sum = matrix[i][(perm+1)/2];
+                       for (int j=0; j<((perm+1)/2); j++)
+                       {
+                           sum -= lower[i][j]*upper[j][(perm+1)/2];
+                       }
+                       lower[i][(perm+1)/2] = sum;
+                   }
+         }
+     }
+     std::cout << std::endl;
+     MPrint(upper,size,size);
+     std::cout << std::endl;
+     MPrint(lower,size,size);
+     
+     double**answer = CreateMatrix(size);
+     mulsquare(lower,upper,answer,size);
+     std::cout << std::endl;
+     MPrint(answer,size,size);
+}
