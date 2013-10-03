@@ -19,7 +19,6 @@ class Node {
               Connection *conn; //will hold which nodes are connected to each other
       public:
               void init(int,int); //this function will have the nodes either hard-coded or read from a CSV
-              void initProb3(int);
               void initProb4(int);
               void UpdateDelta(double*);
               double GetCurState(int);
@@ -32,9 +31,12 @@ class Node {
               double get_2D_Distance(Node,int,int);
               double getFrac(Node,int,int);
               double getselffactor(int);
+              double getconnfactor(int,int);
+              void initProb3(int);
 };
 
 /***********************CLASS FUNCTIONS***********************************/
+
 void Node::init(int index, int DoF)
 {
     DegreesFreedom = DoF;
@@ -75,7 +77,6 @@ void Node::init(int index, int DoF)
     }
     std::cout<<std::endl;
 }
-
 void Node::initProb3(int index)
 {
     DegreesFreedom = 1;
@@ -333,7 +334,12 @@ int Node::connto(int index)
     return conn[index].tonode;
 }
 
+double Node:: getconnfactor(int index,int select)
+{
+    return conn[index].factors[select];
+}
+
 double Node:: getselffactor(int index)
 {
-      return  selffactors[index];
+    return  selffactors[index];
 }
