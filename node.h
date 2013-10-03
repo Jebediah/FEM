@@ -33,6 +33,7 @@ class Node {
               double getselffactor(int);
               double getconnfactor(int,int);
               void initProb3(int);
+              void gettransformation(Node,double**);
 };
 
 /***********************CLASS FUNCTIONS***********************************/
