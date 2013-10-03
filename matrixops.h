@@ -374,17 +374,18 @@ void lud(double**matrix, double*b, int size, double*x)
      for(int i=0; i<size; i++)
      {
          sum = b[i];
-         for(int j=0; j<i-1; j++)
+         for(int j=0; j<i; j++)
          {
                  sum -= lower[i][j]*y[j];
          }
          sum = sum/lower[i][i];
          y[i] = sum;
      }
+     std::cout << std::endl << std::endl << y[0] << std::endl << y[1] << std::endl << y[2];
      for(int i=(size-1); i>-1; i--)
      {
          sum = y[i];
-         for(int j=(size-1); i>i; i--)
+         for(int j=(size-1); j>i; j--)
          {
                  sum -= upper[i][j]*x[j];
          }
