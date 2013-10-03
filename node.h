@@ -19,6 +19,7 @@ class Node {
               Connection *conn; //will hold which nodes are connected to each other
       public:
               void init(int,int); //this function will have the nodes either hard-coded or read from a CSV
+              void initProb3(int);
               void initProb4(int);
               void UpdateDelta(double*);
               double GetCurState(int);
@@ -73,6 +74,91 @@ void Node::init(int index, int DoF)
         std::cin>>conn[i].factors[2];
     }
     std::cout<<std::endl;
+}
+
+void Node::initProb3(int index)
+{
+    DegreesFreedom = 1;
+    curstate = new double[DegreesFreedom];
+    paststate = new double[DegreesFreedom];
+    initialstate = new double[DegreesFreedom];
+    Fixed = new bool[DegreesFreedom];
+    selffactors = new double[3];
+    selffactors[0] = 0;
+    selffactors[1] = 0;
+    curstate[0] = 0;
+    paststate[0] = 0;
+    switch (index)
+    {
+         case 0:
+            initialstate[0] = 80;
+            conn = new Connection[1];
+            conn[0].tonode = 1;
+            conn[0].factors[0] = 1000; //stiffness k = 100N/m
+            conn[0].factors[1] = 1200;   //damping   c = 1  Ns/m
+            conn[0].factors[2] = 0;   //no coupled mass (whatever that is)
+            selffactors[2] = 0;
+            conncount = 1;
+            Fixed[0] = TRUE;
+            break;
+         case 1:
+            initialstate[0] = 60;
+            conn = new Connection[2];
+            conn[0].tonode = 2;
+            conn[1].tonode = 3;
+            conn[0].factors[0] = 1500; //stiffness k = 100N/m
+            conn[0].factors[1] = 1600;   //damping   c = 1  Ns/m
+            conn[0].factors[2] = 0;
+            conn[1].factors[0] = 2000; //stiffness k = 100N/m
+            conn[1].factors[1] = 1600;   //damping   c = 1  Ns/m
+            conn[1].factors[2] = 0;
+            selffactors[2] = 15;
+            conncount = 2;
+            Fixed[0] = FALSE;
+            break;
+         case 2:
+            initialstate[0] = 40;
+            conn = new Connection[1];
+            conn[0].tonode = 4;
+            conn[0].factors[0] = 1000; //stiffness k = 100N/m
+            conn[0].factors[1] = 0;   //damping   c = 1  Ns/m
+            conn[0].factors[2] = 0;
+            selffactors[2] = 10;
+            conncount = 1;
+            Fixed[0] = FALSE;
+            break;
+         case 3:
+            initialstate[0] = 40;
+            conn = new Connection[1];
+            conn[0].tonode = 4;
+            conn[0].factors[0] = 2000; //stiffness k = 100N/m
+            conn[0].factors[1] = 1600;   //damping   c = 1  Ns/m
+            conn[0].factors[2] = 0;
+            selffactors[2] = 0;
+            conncount = 1;
+            Fixed[0] = TRUE;
+            break;
+         case 4:
+            initialstate[0] = 20;
+            conn = new Connection[1];
+            conn[0].tonode = 2;
+            conn[0].factors[0] = 1200; //stiffness k = 100N/m
+            conn[0].factors[1] = 2500;   //damping   c = 1  Ns/m
+            conn[0].factors[2] = 0;
+            selffactors[2] = 10;
+            conncount = 1;
+            Fixed[0] = FALSE;
+            break;
+         case 5:
+            initialstate[0] = 0;
+            conn = new Connection[0];
+            selffactors[2] = 0;
+            conncount = 0;
+            Fixed[0] = TRUE;
+            break;
+         default:
+            break;
+    }
 }
 
 void Node::initProb4(int index)
