@@ -137,6 +137,17 @@ void addm(double**a,double**b,double**result,int rows,int col)
      }
 }
 
+void addm2(double**a,double**b,double**result,int rows,int col,double A,double B)
+{
+     for (int i=0;i<rows;i++)
+     {
+         for (int j=0;j<col;j++)
+         {
+             result[i][j] = A*a[i][j] + B*b[i][j];
+         }
+     }
+}
+
 void addLocToGlo(double**global,double**local,int GIndex1, int GIndex2)
 {
     if(GIndex2 >= 7)
@@ -162,6 +173,17 @@ void subm(double**a,double**b,double**result,int rows,int col)
          for (int j=0;j<col;j++)
          {
              result[i][j] = a[i][j] -b[i][j];
+         }
+     }
+}
+
+void subm(double**a,double**b,double**result,int rows,int col,double A,double B)
+{
+     for (int i=0;i<rows;i++)
+     {
+         for (int j=0;j<col;j++)
+         {
+             result[i][j] = A*a[i][j] - B*b[i][j];
          }
      }
 }
