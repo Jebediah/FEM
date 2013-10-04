@@ -177,7 +177,7 @@ void subm(double**a,double**b,double**result,int rows,int col)
      }
 }
 
-void subm(double**a,double**b,double**result,int rows,int col,double A,double B)
+void subm2(double**a,double**b,double**result,int rows,int col,double A,double B)
 {
      for (int i=0;i<rows;i++)
      {
